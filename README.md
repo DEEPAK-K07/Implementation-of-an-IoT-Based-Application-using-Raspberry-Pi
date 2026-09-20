@@ -19,7 +19,6 @@ To implement an IoT-based environmental monitoring application using Raspberry P
 * Wi-Fi Network
 * IoT Cloud Platform / MQTT Broker
 
-> **Note:** Raspberry Pi Pico W is used instead of the standard Raspberry Pi Pico because the Pico W provides built-in Wi-Fi connectivity required for the IoT application.
 
 ---
 
@@ -27,7 +26,7 @@ To implement an IoT-based environmental monitoring application using Raspberry P
 
 ---
 
-**To upload Wokwi circuit diagram**
+<img width="655" height="487" alt="image" src="https://github.com/user-attachments/assets/c75b6d42-ba75-4dfa-b22e-e96e69d24e08" />
 
 ---
 
@@ -134,9 +133,36 @@ The LED is used as a local status indicator. It turns ON when the measured tempe
 ---
 
 # Program
+```
+from machine import Pin
+from time import sleep
+from dht import DHT22   # if the sensor is DHT11, import DHT11 instead of DHT22
 
+# creating a DHT object
+# change DHT22 to DHT11 if DHT11 is used
+dht = DHT22(Pin(15)) 
+
+# continuously get sensor readings while the board has power
+while True:
+    # getting sensor readings
+    dht.measure()
+    temp = dht.temperature()
+    hum = dht.humidity()
+
+    # displaying values to the console
+    print(f"Temperature: {temp}°C   Humidity: {hum}% ")
+    
+    # format method or string concatenation may also be used
+    #print("Temperature: {}°C   Humidity: {:.0f}% ".format(temp, hum))
+    #print("Temperature: " + str(temp) + "°C" + "   Humidity: " + str(hum) + "%")
+    
+    # delay of 2 secs because DHT22 takes a reading once every 2 secs
+    sleep(2)
+```
 
 # Observation
+
+<img width="942" height="727" alt="image" src="https://github.com/user-attachments/assets/9639808e-fb38-4d09-a2a4-9cc6059f6656" />
 
 
 
