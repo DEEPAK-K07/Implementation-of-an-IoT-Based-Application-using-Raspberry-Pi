@@ -133,7 +133,7 @@ The LED is used as a local status indicator. It turns ON when the measured tempe
 ---
 
 # Program
-```
+```c
 from machine import Pin
 from time import sleep
 from dht import DHT22   # if the sensor is DHT11, import DHT11 instead of DHT22
